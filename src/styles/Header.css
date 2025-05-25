@@ -1,0 +1,52 @@
+.header-container {
+  height: 60px;
+  background-color: #3b7ded;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+  margin-left: -10px;
+  margin-top: 4px;
+}
+
+.header-logo-image {
+  height: 50px;
+  width: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+
+
+.header-nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.header-search-button {
+  background-color: #6b6b6b;
+  color: white;
+}
+
+.header-login-button {
+  background-color: #3ac15c;
+  color: white;
+}
+
+.header-mypage-button {
+  background-color: #f3bb30;
+  color: #333;
+}
+
+.header-nav button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
