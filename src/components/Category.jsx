@@ -1,15 +1,23 @@
 import { useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import categoryMap from '../data/CategoryMap';
 import '../styles/Category.css';
 
 const Category = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const categories = useMemo(() => [
-    { id: 1, name: '메인 페이지', path: '/' },
-    { id: 2, name: '학과 소개', path: '/boards/intro' },
-  ], []);
+  const basePath = useMemo(() => {
+    const path = location.pathname; // 현재 경로
+
+    if (categoryMap[path]) return path;
+
+    const matchingKey = Object.keys(categoryMap).find((key) => path.startsWith(key));
+  
+    return matchingKey || '/';
+  },[location.pathname]);
+
+  const categories = useMemo(() => categoryMap[basePath] || [], [basePath]);
 
   return (
     <div className="category-container">

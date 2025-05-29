@@ -21,7 +21,7 @@
 .layout-content {
   width: 80%;
   min-width: none;
-  padding: 6rem;
+  padding: 4rem;
   overflow-y: auto;
   box-sizing: border-box;
 }
