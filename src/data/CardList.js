@@ -19,7 +19,7 @@ const cardList = [
     },
     {
       title: '학교 식당 정보',
-      path: 'school-dining',
+      path: 'campus-cafeteria',
       description: '오늘 뭐 먹지? 식단표와 맛집 가이드',
       image: '/images/food.jpg',
     },
@@ -36,15 +36,9 @@ const cardList = [
       image: '/images/smartmap.jpg',
     },
     {
-      title: '사용자 소통 창구',
-      path: 'user-communication',
-      description: '학교 생활 관련 질문, 답변, 건의 모음 공간',
-      image: '/images/chat.jpg',
-    },
-    {
-      title: '커뮤니티 & 정보 업데이트 시스템',
-      path: 'community-info',
-      description: '학생 주도의 실시간 정보 공유와 커뮤니티 활동',
+      title: '커뮤니티 & 소통 공간',
+      path: 'user-community',
+      description: '질문, 건의, 자유 주제로 소통하는 학생 커뮤니티 게시판',
       image: '/images/community.jpg',
     },
   ];
