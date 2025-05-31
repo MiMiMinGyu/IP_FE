@@ -10,10 +10,9 @@ const Category = () => {
   const basePath = useMemo(() => {
     const path = location.pathname; // 현재 경로
 
-    if (categoryMap[path]) return path;
+    const sortedKeys = Object.keys(categoryMap).sort((a, b) => b.length - a.length);
 
-    const matchingKey = Object.keys(categoryMap).find((key) => path.startsWith(key));
-  
+    const matchingKey = sortedKeys.find((key) => path.startsWith(key));
     return matchingKey || '/';
   },[location.pathname]);
 
