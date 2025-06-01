@@ -1,0 +1,38 @@
+.calendar-wrapper {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.page-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.fc {
+  direction: ltr;
+  text-align: left;
+}
+
+.fc .fc-daygrid-day-top {
+  justify-content: flex-start !important;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.5em;
+}
