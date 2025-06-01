@@ -7,21 +7,20 @@
   justify-content: space-between;
   padding: 0 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .header-logo {
-  margin-left: -10px;
+  margin-left: -30px;
   margin-top: 4px;
 }
 
 .header-logo-image {
-  height: 50px;
+  height: 130px;
   width: 100%;
   object-fit: contain;
   cursor: pointer;
 }
-
-
 
 .header-nav {
   display: flex;
@@ -29,24 +28,33 @@
 }
 
 .header-search-button {
-  background-color: #6b6b6b;
-  color: white;
+  background-color: #3b7ded;
+  color: #333;
 }
 
 .header-login-button {
-  background-color: #3ac15c;
-  color: white;
+  background-color: #3b7ded;
+  color: #333;
 }
 
 .header-mypage-button {
-  background-color: #f3bb30;
+  background-color: #3b7ded;
   color: #333;
 }
 
 .header-nav button {
-  padding: 6px 12px;
+  padding: 2px 18px;
   border: none;
-  border-radius: 6px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
 }
+
+.header-nav button:first-child {
+  border-right: 1.5px solid #333;
+}
+
+.header-nav button:last-child {
+  border-left: 1.5px solid #333;
+}
+
