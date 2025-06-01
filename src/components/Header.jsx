@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import everything_logo from '../assets/everything_logo.png';
+import everyThingLogo from '../assets/images/ui/everyThingLogo.png';
 import '../styles/Header.css';
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className="header-container">
             <div className="header-logo" onClick={() => navigate('/')}>
-                <img src={everything_logo} alt="everyThing" className="header-logo-image" />
+                <img src={everyThingLogo} alt="everyThing" className="header-logo-image" />
             </div>
 
             <nav className="header-nav">
