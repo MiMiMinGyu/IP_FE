@@ -27,7 +27,7 @@ const cardList = [
     },
     {
       title: '학교 식당 정보',
-      path: 'school-dining',
+      path: 'campus-cafeteria',
       description: '오늘 뭐 먹지? 식단표와 맛집 가이드',
       image: campusCafeteria,
     },
