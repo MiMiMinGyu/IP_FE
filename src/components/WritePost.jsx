@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { createPost } from '../api/BoardService';
 import '../styles/WritePost.css';
 
-const WritePost = ({ onClose, onSuccess, category = 'free' }) => {
+const WritePost = ({ onClose, onSuccess, category }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const studentId = localStorage.getItem('studentId') || '1';
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -26,10 +25,17 @@ const WritePost = ({ onClose, onSuccess, category = 'free' }) => {
       return;
     }
 
-    const postData = { title, content, studentId, category };
+    const token = localStorage.getItem('accessToken');
+    if (!token || token === 'null' || token === 'undefined') {
+      alert('로그인이 필요한 기능입니다.');
+      onClose?.();
+      return;
+    }
+
+    const postData = { title, content, category };
 
     try {
-      await createPost(postData);
+      await createPost(postData); // 내부에서 token 포함되어야 함
       alert('게시글이 작성되었습니다.');
       onSuccess?.();
       onClose?.();
