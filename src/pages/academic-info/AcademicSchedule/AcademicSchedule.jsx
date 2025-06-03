@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import '../../styles/Calendar.css';
+import '../../../styles/Calendar.css';
 
 const AcademicSchedule = () => {
   const [events, setEvents] = useState([]);

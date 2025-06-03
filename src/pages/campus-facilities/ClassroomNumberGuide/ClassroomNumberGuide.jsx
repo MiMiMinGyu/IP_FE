@@ -1,4 +1,4 @@
-import '../../styles/Page.css';
+import '../../../styles/Page.css';
 
 const ClassroomNumberGuide = () => {
   return (
