@@ -9,9 +9,10 @@ const FreeBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const CATEGORY = 'GENERAL';
 
   const loadPosts = async () => {
-    const data = await fetchPosts();
+    const data = await fetchPosts(CATEGORY);
     setPosts(data);
   };
 
@@ -19,16 +20,25 @@ const FreeBoard = () => {
     loadPosts();
   }, []);
 
+  const handleOpenWrite = () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token || token === 'null' || token === 'undefined') {
+      alert('로그인이 필요한 기능입니다.');
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
     <div className="board-container">
       <h2>자유게시판</h2>
-      <button className="post-button" onClick={() => setShowModal(true)}>
+      <button className="post-button" onClick={handleOpenWrite}>
         💭 글쓰기
       </button>
 
       {showModal && (
         <WritePost
-          category="free"
+          category={CATEGORY}
           onClose={() => setShowModal(false)}
           onSuccess={() => loadPosts()}
         />
@@ -46,7 +56,7 @@ const FreeBoard = () => {
                 <div className="post-meta">
                   <span>{format(new Date(post.createdAt), 'yyyy-MM-dd HH:mm')}</span> ·{' '}
                   <span>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true, locale: ko })}</span> ·{' '}
-                  <span className="post-author">{post.nickname}</span>
+                  <span className="post-author">{post.author.nickname}</span>
                 </div>
               </div>
             </div>

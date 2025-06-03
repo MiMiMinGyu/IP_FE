@@ -9,8 +9,10 @@ const QuestionBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const CATEGORY = 'QUESTION';
+
   const loadPosts = async () => {
-    const data = await fetchPosts('question'); // 질문 카테고리 기반 요청
+    const data = await fetchPosts(CATEGORY);
     setPosts(data);
   };
 
@@ -18,16 +20,25 @@ const QuestionBoard = () => {
     loadPosts();
   }, []);
 
+  const handleOpenWrite = () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token || token === 'null' || token === 'undefined') {
+      alert('로그인이 필요한 기능입니다.');
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
     <div className="board-container">
       <h2>질문게시판</h2>
-      <button className="post-button" onClick={() => setShowModal(true)}>
+      <button className="post-button" onClick={handleOpenWrite}>
         ❓ 글쓰기
       </button>
 
       {showModal && (
         <WritePost
-          category="question"
+          category={CATEGORY}
           onClose={() => setShowModal(false)}
           onSuccess={loadPosts}
         />

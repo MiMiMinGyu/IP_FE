@@ -9,8 +9,10 @@ const InquiryBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const CATEGORY = 'INQUIRY';
+
   const loadPosts = async () => {
-    const data = await fetchPosts('inquiry'); // 카테고리 전달 (API가 받을 수 있게 수정되어 있어야 함)
+    const data = await fetchPosts(CATEGORY);
     setPosts(data);
   };
 
@@ -18,16 +20,26 @@ const InquiryBoard = () => {
     loadPosts();
   }, []);
 
+  const handleOpenWrite = () => {
+    const token = localStorage.getItem('accessToken');
+
+    if (!token || token === 'null' || token === 'undefined') {
+      alert('로그인이 필요한 기능입니다.');
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
     <div className="board-container">
       <h2>문의게시판</h2>
-      <button className="post-button" onClick={() => setShowModal(true)}>
+      <button className="post-button" onClick={handleOpenWrite}>
         📩 글쓰기
       </button>
 
       {showModal && (
         <WritePost
-          category="inquiry"
+          category={CATEGORY}
           onClose={() => setShowModal(false)}
           onSuccess={loadPosts}
         />
