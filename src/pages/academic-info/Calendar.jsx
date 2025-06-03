@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // 클릭/드래그 가능하게 해줌
-import './Calendar.css'; // 별도 스타일 적용
+import '../../styles/Calendar.css'; // 별도 스타일 적용
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
@@ -41,7 +41,6 @@ const Calendar = () => {
     <div className="page-container">
       <h1 className="page-title">수강 신청 일정</h1>
       <p className="page-description">수강신청 일정을 확인하세요.</p>
-      <p>test 입니다</p>
 
       <div className="calendar-wrapper">
         <FullCalendar

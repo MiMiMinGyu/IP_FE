@@ -3,11 +3,14 @@
   background-color: #3b7ded;
   color: white;
   display: flex;
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  overflow-y: hidden; /* 가로 스크롤 방지 */
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  min-height: 60px;
 }
 
 .header-logo {
@@ -43,6 +46,8 @@
 }
 
 .header-nav button {
+  white-space: nowrap;
+  min-width: 80px;
   padding: 2px 18px;
   border: none;
   font-size: 15px;

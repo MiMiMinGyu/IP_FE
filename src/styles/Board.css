@@ -1,0 +1,70 @@
+.board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.post-button {
+    align-self: flex-end;
+    background: none;
+    color: rgb(26, 26, 26);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0 10px 0;
+    transition: transform 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
+}
+
+.post-button:hover {
+    transform: translateX(5px); /* transform으로 동작 설정 */
+    font-weight: 1200;
+    color: rgb(120, 120, 120);
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 각 게시글 사이 간격 */
+}
+
+.post-container {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.post-summary {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+}
+
+.post-meta {
+    font-size: 12px;
+    color: #888;
+}
+
+.post-author {
+    font-weight: bold;
+}
