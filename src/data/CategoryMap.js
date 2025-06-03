@@ -11,8 +11,8 @@ const categoryMap = {
   ],
   '/academic-info': [
     { id: 1, name: '학과 소개', path: '/academic-info/intro' },
-    { id: 2, name: '학사 일정', path: '/academic-info/calendar' },
-    { id: 3, name: '수강신청 일정', path: '/academic-info/apply-schedule' },
+    { id: 2, name: '학사 일정', path: '/academic-info/academic-schedule' },
+    { id: 3, name: '수강신청 일정', path: '/academic-info/calendar' },
     { id: 4, name: '필수 과목 안내', path: '/academic-info/required-courses' },
     { id: 5, name: '수강 신청 팁', path: '/academic-info/apply-tips' },
   ],

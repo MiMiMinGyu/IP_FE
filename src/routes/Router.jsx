@@ -6,8 +6,8 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 
 import AcademicIntro from '../pages/academic-info/AcademicIntro';
-import Calendar from '../pages/academic-info/ApplySchedule';
-import ApplySchedule from '../pages/academic-info/ApplySchedule';
+import Calendar from '../pages/academic-info/Calendar';
+import AcademicSchedule from '../pages/academic-info/AcademicSchedule';
 import RequiredCourses from '../pages/academic-info/RequiredCourses';
 import ApplyTips from '../pages/academic-info/ApplyTips';
 
@@ -48,7 +48,7 @@ function Router() {
                     <Route index element={<Navigate to="intro" replace />} />
                     <Route path="intro" element={<AcademicIntro />} />
                     <Route path="calendar" element={<Calendar />} />
-                    <Route path="apply-schedule" element={<ApplySchedule />} />
+                    <Route path="academic-schedule" element={<AcademicSchedule />} />
                     <Route path="required-courses" element={<RequiredCourses />} />
                     <Route path="apply-tips" element={<ApplyTips />} />
                 </Route>
