@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // 클릭/드래그 가능하게 해줌
-import '../../styles/Calendar.css'; // 별도 스타일 적용
+import '../../../styles/Calendar.css'; // 별도 스타일 적용
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);

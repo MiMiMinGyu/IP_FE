@@ -1,6 +1,6 @@
-import '../../styles/Page.css';
+import '../../../styles/Page.css';
 
-const ParkingInfo = () => {
+const AcademicIntro = () => {
   return (
     <div className="page-container">
       <h1 className="page-title">학과 소개</h1>
@@ -9,4 +9,4 @@ const ParkingInfo = () => {
   );
 };
 
-export default ParkingInfo;
+export default AcademicIntro;

@@ -1,6 +1,6 @@
-import '../../styles/Page.css';
+import '../../../styles/Page.css';
 
-const CollegeLocations = () => {
+const SmokingAreas = () => {
   return (
     <div className="page-container">
       <h1 className="page-title">학과 소개</h1>
@@ -9,4 +9,4 @@ const CollegeLocations = () => {
   );
 };
 
-export default CollegeLocations;
+export default SmokingAreas;
