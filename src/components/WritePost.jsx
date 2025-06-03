@@ -5,7 +5,7 @@ import '../styles/WritePost.css';
 const WritePost = ({ onClose, onSuccess, category = 'free' }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const userId = localStorage.getItem('userId') || '1';
+  const studentId = localStorage.getItem('studentId') || '1';
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -26,7 +26,7 @@ const WritePost = ({ onClose, onSuccess, category = 'free' }) => {
       return;
     }
 
-    const postData = { title, content, userId, category };
+    const postData = { title, content, studentId, category };
 
     try {
       await createPost(postData);

@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/SignUp.module.css';
+import { register } from '../api/registerService';
+import styles from '../styles/register.module.css';
 
-function SignUp() {
-  const [id, setId] = useState('');
+function Register() {
+  const [studentId, setStudentId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-1);
   };
 
-  const isEmpty = !id.trim() || !password.trim() || !confirmPassword.trim() || !name.trim() || !nickname.trim();
+  const isEmpty = !studentId.trim() || !password.trim() || !confirmPassword.trim() || !name.trim() || !nickname.trim() || !email.trim();
 
-  const handleSignUpSubmit = (event) => {
+  const handleRegisterSubmit = async (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -24,20 +26,31 @@ function SignUp() {
       return;
     }
 
-    // TODO: 회원가입 요청 로직 추가
-    alert('회원가입이 완료되었습니다!');
-    navigate('/login');
+    const result = await register({
+      studentId,
+      password,
+      name,
+      nickname,
+      email,
+    });
+
+    if (result.success) {
+      alert('회원가입이 완료되었습니다!');
+      navigate('/login');
+    } else {
+      alert(`회원가입 실패: ${result.error}`);
+    }
   };
 
   return (
-    <div className={styles["signup-page"]}>
-      <div className={styles["signup-container"]}>
+    <div className={styles["register-page"]}>
+      <div className={styles["register-container"]}>
         <button onClick={handleBack} className={styles["back-button"]}> 🐾 돌아가기 </button>
-        <h2 className={styles["signup-title"]}>회원가입</h2>
-        <form onSubmit={handleSignUpSubmit}>
+        <h2 className={styles["register-title"]}>회원가입</h2>
+        <form onSubmit={handleRegisterSubmit}>
           <div className={styles["input-group"]}>
-            <label htmlFor="id" className={styles.label}>아이디</label>
-            <input type="text" id="id" value={id} onChange={(e) => setId(e.target.value)} required />
+            <label htmlFor="studentId" className={styles.label}>아이디</label>
+            <input type="text" id="studentId" value={studentId} onChange={(e) => setStudentId(e.target.value)} required />
           </div>
 
           <div className={styles["input-group"]}>
@@ -60,11 +73,16 @@ function SignUp() {
             <input type="text" id="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} required />
           </div>
 
-          <button type="submit" className={styles["signup-button"]} disabled={isEmpty}>회원가입</button>
+          <div className={styles["input-group"]}>
+            <label htmlFor="email" className={styles.label}>이메일</label>
+            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+
+          <button type="submit" className={styles["register-button"]} disabled={isEmpty}>회원가입</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default SignUp;
+export default Register;

@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
-import SignUp from '../pages/SignUp';
+import Register from '../pages/Register';
 
 import AcademicIntro from '../pages/academic-info/AcademicIntro/AcademicIntro';
 import Calendar from '../pages/academic-info/Calendar/Calendar';
@@ -101,7 +101,7 @@ function Router() {
             </Route>
 
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/register" element={<Register />} />
             
         </Routes>
     );

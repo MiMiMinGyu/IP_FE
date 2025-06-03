@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { login } from '../services/LoginService';
+import { login } from '../api/LoginService';
 import styles from '../styles/Login.module.css';
 
 function Login() {
-  const [userId, setUserId] = useState('');
+  const [studentId, setStudentId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
@@ -15,14 +15,20 @@ function Login() {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
-    // const result = await login(userId, password);
+    const result = await login(studentId.trim(), password);
 
-    // if (result.success)
-    if(userId && password) { // 임시 로그인 성공 조건 (todo: 실제 로그인 로직으로 대체 필요)
-      alert("환영합니다!");
-      navigate('/'); // 로그인 성공 시 메인으로 이동
-    } else {
-      alert("로그인에 실패했습니다.\n아이디 혹은 비밀번호를 확인해주세요.");
+    if (result.success) {
+      const { accessToken, user } = result.data;
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('user', JSON.stringify(user));
+      console.log("로그인 응답: ", result.data);
+
+      alert(`환영합니다, ${user.nickname}님!`);
+      navigate('/'); 
+    }
+    else {
+      alert(`로그인에 실패했습니다.\n${result.error}`);
     }
   };
 
@@ -33,12 +39,12 @@ function Login() {
         <h2 className={styles["login-title"]}>로그인</h2>
         <form onSubmit={handleLoginSubmit}>
           <div className={styles["input-group"]}>
-            <label htmlFor="userId" className={styles["label"]}>아이디</label>
+            <label htmlFor="studentId" className={styles["label"]}>아이디</label>
             <input
               type="text"
-              id="userId"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
+              id="studentId"
+              value={studentId}
+              onChange={(e) => setStudentId(e.target.value)}
               required
               placeholder="아이디를 입력하세요"
             />
@@ -59,7 +65,7 @@ function Login() {
           <button type="submit" className={styles["login-button"]}>로그인</button>
 
           <div className={styles["extra-links"]}>
-            <span onClick={() => navigate('/signup')}>회원가입</span>
+            <span onClick={() => navigate('/register')}>회원가입</span>
             <span> | </span>
             <span>아이디/비밀번호 찾기</span>
           </div>
