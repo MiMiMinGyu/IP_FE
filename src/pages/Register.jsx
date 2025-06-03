@@ -9,7 +9,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState(''); // ✅ 이메일 입력 추가
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -18,7 +18,6 @@ function Register() {
 
   const isEmpty = !studentId.trim() || !password.trim() || !confirmPassword.trim() || !name.trim() || !nickname.trim() || !email.trim();
 
-  // ✅ async 추가
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
 
