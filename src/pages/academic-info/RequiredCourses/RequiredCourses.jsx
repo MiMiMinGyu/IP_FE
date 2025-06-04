@@ -1,4 +1,5 @@
-import '../../styles/Page.css';
+import '../../../styles/Page.css';
+import './RequiredCourses.css';
 
 const RequiredCourses = () => {
   return (
@@ -6,16 +7,15 @@ const RequiredCourses = () => {
       <h1 className="page-title">필수 과목 안내</h1>
       <p className="page-description">학년별 필수 및 추천 전공 과목을 소개합니다.</p>
 
-      {/* 이미지 경로는 public 폴더 기준 */}
       <img
         src="/images/course-image.png"
         alt="전공 과목 안내 이미지"
-        style={styles.image}
+        className="course-image"
       />
 
       {/* 1학년 */}
-      <div style={styles.section}>
-        <h2 style={styles.heading}>📘 1학년</h2>
+      <div className="course-section">
+        <h2 className="course-heading">📘 1학년</h2>
         <ul>
           <li><strong>C언어:</strong> 절차지향 언어 C를 통해 프로그래밍 기초 습득</li>
           <li><strong>객체지향프로그래밍1:</strong> 클래스와 객체를 기반으로 한 OOP 원리 학습</li>
@@ -23,8 +23,8 @@ const RequiredCourses = () => {
       </div>
 
       {/* 2학년 */}
-      <div style={styles.section}>
-        <h2 style={styles.heading}>📗 2학년</h2>
+      <div className="course-section">
+        <h2 className="course-heading">📗 2학년</h2>
         <ul>
           <li><strong>데이터통신:</strong> 통신의 기본 개념과 프로토콜, OSI 7계층 등 이해</li>
           <li><strong>디지털논리회로:</strong> 논리게이트, 플립플롭 등 디지털 회로 설계 기초</li>
@@ -42,8 +42,8 @@ const RequiredCourses = () => {
       </div>
 
       {/* 3학년 */}
-      <div style={styles.section}>
-        <h2 style={styles.heading}>📙 3학년</h2>
+      <div className="course-section">
+        <h2 className="course-heading">📙 3학년</h2>
         <ul>
           <li><strong>기계학습:</strong> 머신러닝 기초 이론 및 알고리즘 실습</li>
           <li><strong>데이터베이스:</strong> 관계형 DB 설계와 SQL 활용</li>
@@ -64,8 +64,8 @@ const RequiredCourses = () => {
       </div>
 
       {/* 4학년 */}
-      <div style={styles.section}>
-        <h2 style={styles.heading}>📕 4학년</h2>
+      <div className="course-section">
+        <h2 className="course-heading">📕 4학년</h2>
         <ul>
           <li><strong>알고리즘:</strong> 탐색, 정렬, 동적계획법 등 설계/분석</li>
           <li><strong>이동통신:</strong> 무선통신 원리와 셀룰러 구조</li>
@@ -81,24 +81,6 @@ const RequiredCourses = () => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  image: {
-    width: '100%',
-    maxWidth: '700px',
-    borderRadius: '12px',
-    margin: '24px 0',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-  },
-  section: {
-    marginBottom: '32px',
-  },
-  heading: {
-    fontSize: '20px',
-    fontWeight: 'bold',
-    marginBottom: '12px',
-  },
 };
 
 export default RequiredCourses;

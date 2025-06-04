@@ -1,4 +1,4 @@
-import '../../styles/Page.css';
+import '../../../styles/Page.css';
 
 const ClassroomNumberGuide = () => {
   return (
@@ -26,7 +26,7 @@ const ClassroomNumberGuide = () => {
         <div style={{ marginTop: '32px' }}>
           <h2 style={{ fontSize: '18px', marginBottom: '12px' }}>📍 강의실 번호 예시</h2>
           <ul style={{ lineHeight: '1.8', paddingLeft: '16px' }}>
-            <li><strong>Yxxx</strong> 제1공학관</li>
+            <li><strong>Y1xx</strong> 제1공학관</li>
             <li><strong>Y2xx</strong> 창조예술관</li>
             <li><strong>Y3xx</strong> 명진당</li>
             <li><strong>Y5xx</strong> 제5공학관</li>
