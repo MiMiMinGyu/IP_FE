@@ -1,0 +1,72 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  font-family: 'Pretendard', sans-serif;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 3.5rem;
+  color: #343a40;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #4e73df;
+  padding-left: 0.5rem;
+}
+
+section ul {
+  padding-left: 1rem;
+}
+
+section ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #212529;
+}
+
+ul li strong {
+  margin-right: 0.3rem;
+  color: #343a40;
+}
