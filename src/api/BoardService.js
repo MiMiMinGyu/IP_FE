@@ -34,3 +34,29 @@ export const createPost = async (postData) => {
     return null;
   }
 };
+
+export const deletePost = async (postId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/boards/${postId}`, {
+      headers: getAuthHeaders(),
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`❌ 게시글(${postId}) 삭제 실패:`, error);
+    return null;
+  }
+};
+
+export const likePost = async (postId) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/boards/${postId}/like`, null, {
+      headers: getAuthHeaders(),
+    });
+    return res.data; // likeCount가 포함되어 있어야 함
+  } catch (error) {
+    console.error('❌ 좋아요 실패:', error);
+    return null;
+  }
+};
+
+
