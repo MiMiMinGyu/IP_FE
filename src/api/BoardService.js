@@ -4,29 +4,40 @@ const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('accessToken');
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  return token && token !== 'null' && token !== 'undefined'
+    ? { Authorization: `Bearer ${token}` }
+    : null;
 };
 
-export const fetchPosts = async (category) => {
+const authGet = async (url) => {
+  const headers = getAuthHeaders();
   try {
-    const token = localStorage.getItem('accessToken');
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
-
-    const response = await axios.get(`${BASE_URL}/boards/category/${category}`, {
-      headers,
+    const res = await axios.get(`${BASE_URL}${url}`, {
+      headers: headers || {},
+      withCredentials: true,
     });
-    
-    return response.data;
-  } catch (error) {
-    console.error(`❌ 게시글(${category}) 불러오기 실패:`, error);
-    return [];
+    return res.data;
+  } catch (err) {
+    console.error(`❌ GET ${url} 실패:`, err);
+    return null;
   }
 };
 
+export const fetchPosts = async (category) => {
+  return authGet(`/boards/category/${category}`) || [];
+};
+
 export const createPost = async (postData) => {
+  const headers = getAuthHeaders();
+  if (!headers) {
+    alert('로그인이 필요한 기능입니다.');
+    return null;
+  }
+
   try {
     const response = await axios.post(`${BASE_URL}/boards`, postData, {
-      headers: getAuthHeaders(),
+      headers,
+      withCredentials: true,
     });
     return response.data;
   } catch (error) {
@@ -36,9 +47,16 @@ export const createPost = async (postData) => {
 };
 
 export const deletePost = async (postId) => {
+  const headers = getAuthHeaders();
+  if (!headers) {
+    alert('로그인이 필요한 기능입니다.');
+    return null;
+  }
+
   try {
     const response = await axios.delete(`${BASE_URL}/boards/${postId}`, {
-      headers: getAuthHeaders(),
+      headers,
+      withCredentials: true,
     });
     return response.data;
   } catch (error) {
@@ -48,15 +66,32 @@ export const deletePost = async (postId) => {
 };
 
 export const likePost = async (postId) => {
+  const headers = getAuthHeaders();
+  if (!headers) {
+    alert('로그인이 필요한 기능입니다.');
+    return null;
+  }
+
   try {
-    const res = await axios.post(`${BASE_URL}/boards/${postId}/like`, null, {
-      headers: getAuthHeaders(),
-    });
-    return res.data; // likeCount가 포함되어 있어야 함
+    const response = await axios.post(
+      `${BASE_URL}/boards/${postId}/like`,
+      null,
+      {
+        headers,
+        withCredentials: true,
+      }
+    );
+    return response.data;
   } catch (error) {
-    console.error('❌ 좋아요 실패:', error);
+    const status = error?.response?.status;
+    if (status === 409) {
+      alert('이미 좋아요를 누르셨습니다.');
+    } else if (status === 401) {
+      alert('인증이 만료되었습니다. 다시 로그인해주세요.');
+    } else {
+      console.error('❌ 좋아요 실패:', error);
+      alert('좋아요에 실패했습니다.');
+    }
     return null;
   }
 };
-
-
