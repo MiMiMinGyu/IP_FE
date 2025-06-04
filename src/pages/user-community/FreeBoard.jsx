@@ -42,17 +42,12 @@ const FreeBoard = () => {
   };
 
   const handleLike = async (postId) => {
-    const updated = await likePost(postId);
-
-    if (updated) {
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId ? { ...post, likeCount: updated.likeCount } : post
-        )
-      );
+    const result = await likePost(postId);
+    if (result) {
+      alert('좋아요 성공!');
+      await loadPosts(); // 원래 상태처럼 전체 리패치
     }
   };
-
 
   return (
     <div className="board-container">
@@ -76,12 +71,19 @@ const FreeBoard = () => {
               <div className="post-content">
                 <h3 className="post-title">{post.title}</h3>
                 <p className="post-summary">
-                  {post.content.length > 100 ? `${post.content.substring(0, 100)}...` : post.content}
+                  {post.content.length > 100
+                    ? `${post.content.substring(0, 100)}...`
+                    : post.content}
                 </p>
                 <div className="post-meta">
                   <span>{format(new Date(post.createdAt), 'yyyy-MM-dd HH:mm')}</span> ·{' '}
-                  <span>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true, locale: ko })}</span> ·{' '}
-                  <span className="post-author">{post.author.nickname}</span>
+                  <span>
+                    {formatDistanceToNow(new Date(post.createdAt), {
+                      addSuffix: true,
+                      locale: ko,
+                    })}
+                  </span>{' '}
+                  · <span className="post-author">{post.author.nickname}</span>
                 </div>
               </div>
 
@@ -92,7 +94,6 @@ const FreeBoard = () => {
               <button className="post-delete-button" onClick={() => handleDelete(post.id)}>
                 ❌ 삭제
               </button>
-
             </div>
           ))
         ) : (

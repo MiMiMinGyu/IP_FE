@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchPosts, deletePost } from '../../api/BoardService';
+import { fetchPosts, deletePost, likePost } from '../../api/BoardService';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import WritePost from '../../components/WritePost';
@@ -41,6 +41,14 @@ const InquiryBoard = () => {
     }
   };
 
+  const handleLike = async (postId) => {
+    const result = await likePost(postId);
+    if (result) {
+      alert('좋아요 성공!');
+      await loadPosts();
+    }
+  };
+
   return (
     <div className="board-container">
       <h2>문의게시판</h2>
@@ -63,19 +71,30 @@ const InquiryBoard = () => {
               <div className="post-content">
                 <h3 className="post-title">{post.title}</h3>
                 <p className="post-summary">
-                  {post.content.length > 100 ? `${post.content.substring(0, 100)}...` : post.content}
+                  {post.content.length > 100
+                    ? `${post.content.substring(0, 100)}...`
+                    : post.content}
                 </p>
                 <div className="post-meta">
                   <span>{format(new Date(post.createdAt), 'yyyy-MM-dd HH:mm')}</span> ·{' '}
-                  <span>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true, locale: ko })}</span> ·{' '}
-                  <span className="post-author">{post.nickname}</span>
+                  <span>
+                    {formatDistanceToNow(new Date(post.createdAt), {
+                      addSuffix: true,
+                      locale: ko,
+                    })}
+                  </span>{' '}
+                  · <span className="post-author">{post.nickname}</span>
                 </div>
               </div>
+
+              {/* ❤️ 좋아요 버튼 추가 */}
+              <button className="like-button" onClick={() => handleLike(post.id)}>
+                ❤️ {post.likeCount ?? 0}
+              </button>
 
               <button className="post-delete-button" onClick={() => handleDelete(post.id)}>
                 ❌ 삭제
               </button>
-              
             </div>
           ))
         ) : (
