@@ -24,7 +24,7 @@ const Header = () => {
         if (token) {
             navigate('/mypage');
         } else {
-            alert('로그인이 필요한 서비스입니다다.');
+            alert('로그인이 필요한 서비스입니다.');
             navigate('/login');
         }
     };
