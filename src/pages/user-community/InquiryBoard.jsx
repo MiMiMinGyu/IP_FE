@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchPosts } from '../../api/BoardService';
+import { fetchPosts, deletePost } from '../../api/BoardService';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import WritePost from '../../components/WritePost';
@@ -28,6 +28,17 @@ const InquiryBoard = () => {
       return;
     }
     setShowModal(true);
+  };
+
+  const handleDelete = async (postId) => {
+    const confirmed = window.confirm('정말 이 게시글을 삭제하시겠습니까?');
+    if (!confirmed) return;
+
+    const result = await deletePost(postId);
+    if (result) {
+      alert('게시글이 삭제되었습니다!');
+      await loadPosts();
+    }
   };
 
   return (
@@ -60,6 +71,11 @@ const InquiryBoard = () => {
                   <span className="post-author">{post.nickname}</span>
                 </div>
               </div>
+
+              <button className="post-delete-button" onClick={() => handleDelete(post.id)}>
+                ❌ 삭제
+              </button>
+              
             </div>
           ))
         ) : (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchPosts } from '../../api/BoardService';
+import { fetchPosts, deletePost, likePost } from '../../api/BoardService';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import WritePost from '../../components/WritePost';
@@ -22,12 +22,37 @@ const FreeBoard = () => {
 
   const handleOpenWrite = () => {
     const token = localStorage.getItem('accessToken');
+
     if (!token || token === 'null' || token === 'undefined') {
       alert('로그인이 필요한 기능입니다.');
       return;
     }
     setShowModal(true);
   };
+
+  const handleDelete = async (postId) => {
+    const confirmed = window.confirm('정말 이 게시글을 삭제하시겠습니까?');
+    if (!confirmed) return;
+
+    const result = await deletePost(postId);
+    if (result) {
+      alert('게시글이 삭제되었습니다!');
+      await loadPosts();
+    }
+  };
+
+  const handleLike = async (postId) => {
+    const updated = await likePost(postId);
+
+    if (updated) {
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, likeCount: updated.likeCount } : post
+        )
+      );
+    }
+  };
+
 
   return (
     <div className="board-container">
@@ -59,6 +84,15 @@ const FreeBoard = () => {
                   <span className="post-author">{post.author.nickname}</span>
                 </div>
               </div>
+
+              <button className="like-button" onClick={() => handleLike(post.id)}>
+                ❤️ {post.likeCount ?? 0}
+              </button>
+
+              <button className="post-delete-button" onClick={() => handleDelete(post.id)}>
+                ❌ 삭제
+              </button>
+
             </div>
           ))
         ) : (
