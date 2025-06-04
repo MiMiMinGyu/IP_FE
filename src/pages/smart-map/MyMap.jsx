@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import loadKakaoMap from "../../api/loadKakaoMap";
+import loadKakaoMap from "../../api/LoadKakaoMap";
 import styles from '../../styles/MyMap.module.css';
 
 const MyMap = () => {

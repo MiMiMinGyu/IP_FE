@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../api/registerService';
-import styles from '../styles/register.module.css';
+import { register } from '../api/RegisterService';
+import styles from '../styles/Register.module.css';
 
 function Register() {
   const [studentId, setStudentId] = useState('');
