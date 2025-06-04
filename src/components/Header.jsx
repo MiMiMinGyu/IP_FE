@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import everyThingLogo from '../assets/images/ui/everyThingLogo.png';
+import MyPageModal from '../components/MyPage';
 import '../styles/Header.css';
 
 const Header = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showMyPageModal, setShowMyPageModal] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
@@ -22,14 +24,15 @@ const Header = () => {
     const handleMyPage = () => {
         const token = localStorage.getItem('accessToken');
         if (token) {
-            navigate('/mypage');
+            setShowMyPageModal(true);
         } else {
-            alert('로그인이 필요한 서비스입니다다.');
+            alert('로그인이 필요한 서비스입니다.');
             navigate('/login');
         }
     };
 
     return (
+        <>
         <header className="header-container">
             <div className="header-logo" onClick={() => navigate('/')}>
                 <img src={everyThingLogo} alt="everyThing" className="header-logo-image" />
@@ -48,6 +51,11 @@ const Header = () => {
                 <button className="header-mypage-button" onClick={handleMyPage}> 마이페이지 </button>
             </nav>
         </header>
+
+        {showMyPageModal && (
+            <MyPageModal onClose={() => setShowMyPageModal(false)} />
+        )}
+    </>
     );
 };
 

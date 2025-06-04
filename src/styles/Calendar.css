@@ -36,3 +36,29 @@
 .fc .fc-toolbar-title {
   font-size: 1.5em;
 }
+
+/* 일정 바 스타일 개선 */
+.fc .fc-event {
+  border: none;
+  border-radius: 6px;  /* ⬅️ 둥글게 */
+  padding: 3px 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 주말 배경색 (선택) */
+.fc-day-sun {
+  background-color: #fff5f5 !important;  /* 연한 빨강톤 */
+}
+.fc-day-sat {
+  background-color: #f0f4ff !important;  /* 연한 파랑톤 */
+}
+
+/* 툴바 제목 스타일 */
+.fc .fc-toolbar-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}

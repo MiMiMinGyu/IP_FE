@@ -8,54 +8,31 @@ import '../../../styles/Calendar.css';
 const AcademicSchedule = () => {
   const [events, setEvents] = useState([]);
 
-  // 학사 일정 더미 데이터
   useEffect(() => {
-    const dummyData = [
-      {
-        title: '1학기 개강일',
-        start: '2025-03-03',
-        end: '2025-03-03',
-        color: '#4e73df' // 파란색 - 학사일정
-      },
-      {
-        title: '수강신청 1차',
-        start: '2025-02-24T09:00:00',
-        end: '2025-02-26T18:00:00',
-        color: '#1cc88a' // 녹색 - 수강신청
-      },
-      {
-        title: '수강신청 2차',
-        start: '2025-03-03T09:00:00',
-        end: '2025-03-05T18:00:00',
-        color: '#1cc88a'
-      },
-      {
-        title: '중간고사',
-        start: '2025-04-14',
-        end: '2025-04-18',
-        color: '#f6c23e' // 노란색 - 시험
-      },
-      {
-        title: '기말고사',
-        start: '2025-06-09',
-        end: '2025-06-13',
-        color: '#f6c23e'
-      },
-      {
-        title: '성적 입력 마감',
-        start: '2025-06-20',
-        end: '2025-06-20',
-        color: '#e74a3b' // 빨간색 - 성적
-      },
-      {
-        title: '여름방학 시작',
-        start: '2025-06-23',
-        end: '2025-06-23',
-        color: '#858796' // 회색 - 방학
-      }
-    ];
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/schedule`);
+        if (!res.ok) {
+          throw new Error('Failed to fetch schedule');
+        }
 
-    setEvents(dummyData);
+        const data = await res.json();
+
+        const mapped = data.map((item) => ({
+          title: item.title,
+          start: item.startDate,
+          end: item.endDate,
+          color: item.color,
+          allDay: true,
+        }));
+
+        setEvents(mapped);
+      } catch (err) {
+        console.error('학사 일정 불러오기 실패:', err);
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   return (
@@ -70,7 +47,7 @@ const AcademicSchedule = () => {
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay',
           }}
           events={events}
           editable={false}
@@ -79,6 +56,10 @@ const AcademicSchedule = () => {
           dayMaxEvents={true}
           weekends={true}
           locale="ko"
+          eventDisplay="block"
+          eventDidMount={(info) => {
+            info.el.setAttribute('title', info.event.title);
+          }}
         />
       </div>
     </div>
