@@ -1,0 +1,50 @@
+.course-image {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  margin: 24px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* section 영역 */
+.course-section {
+  margin-bottom: 32px;
+  padding: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #fafafa;
+}
+
+/* 각 학년 제목 */
+.course-heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #3c4858;
+}
+
+/* ul 기본 점 제거 및 padding 조정 */
+.course-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* li 커스텀 마크와 spacing */
+.course-section li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 앞에 아이콘 느낌 점 */
+.course-section li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #00b894;
+  font-size: 14px;
+  top: 2px;
+}
